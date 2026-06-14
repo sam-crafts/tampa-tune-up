@@ -2,7 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { ServiceGrid } from "@/components/service-grid";
 import { CTASection } from "@/components/cta-section";
 
-export const Route = createFileRoute("/services")({
+export const Route = createFileRoute("/services/")({
   head: () => ({
     meta: [
       { title: "Landscaping Services in Tampa, FL | Canvas Landscapes" },
