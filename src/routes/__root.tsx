@@ -60,6 +60,12 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "theme-color", content: "#1f3a2e" },
+      { property: "og:title", content: "Landscaping in Tampa, FL | Canvas Landscapes" },
+      { name: "twitter:title", content: "Landscaping in Tampa, FL | Canvas Landscapes" },
+      { property: "og:description", content: "Canvas Landscapes offers premium landscaping in Tampa, FL. Licensed & insured. Free estimates. Call (813) 555-0192 today." },
+      { name: "twitter:description", content: "Canvas Landscapes offers premium landscaping in Tampa, FL. Licensed & insured. Free estimates. Call (813) 555-0192 today." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d6c65c3-b105-4909-ad4d-150482297414/id-preview-2682d8c4--d2e1fa38-d73f-4615-812b-ba00a88b090c.lovable.app-1781465662635.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/5d6c65c3-b105-4909-ad4d-150482297414/id-preview-2682d8c4--d2e1fa38-d73f-4615-812b-ba00a88b090c.lovable.app-1781465662635.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
