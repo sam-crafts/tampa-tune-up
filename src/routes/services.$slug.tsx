@@ -1,6 +1,6 @@
 import { createFileRoute, notFound, Link } from "@tanstack/react-router";
 import { CheckCircle2, ArrowLeft } from "lucide-react";
-import { SERVICE_DETAILS } from "@/lib/service-details";
+import { SERVICE_DETAILS, type ServiceDetail } from "@/lib/service-details";
 import { PhotoPlaceholder } from "@/components/photo-placeholder";
 import { QuoteForm } from "@/components/quote-form";
 import { FAQ } from "@/components/faq";
