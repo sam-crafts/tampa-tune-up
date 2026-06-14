@@ -35,7 +35,7 @@ export const Route = createFileRoute("/services/$slug")({
 });
 
 function ServiceDetailPage() {
-  const d = Route.useLoaderData();
+  const d: ServiceDetail = Route.useLoaderData();
   return (
     <>
       <section className="container-prose py-14 md:py-20">
