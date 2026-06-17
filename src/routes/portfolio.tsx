@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { PhotoPlaceholder } from "@/components/photo-placeholder";
 import { CTASection } from "@/components/cta-section";
+import { IMG, SERVICE_IMAGES } from "@/lib/images";
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -19,19 +19,19 @@ export const Route = createFileRoute("/portfolio")({
 
 type Cat = "All" | "Lawn Care" | "Landscape Design" | "Hardscaping" | "Irrigation" | "Sod" | "Cleanup";
 
-const projects: { cat: Exclude<Cat, "All">; loc: string; desc: string; ba?: boolean }[] = [
-  { cat: "Hardscaping", loc: "South Tampa", desc: "Travertine paver patio with seat wall and fire pit.", ba: true },
-  { cat: "Landscape Design", loc: "Wesley Chapel", desc: "Full front-yard redesign with Florida natives.", ba: true },
-  { cat: "Lawn Care", loc: "Brandon", desc: "Weekly Floratam St. Augustine maintenance program." },
-  { cat: "Irrigation", loc: "Riverview", desc: "8-zone smart sprinkler with Rachio controller." },
-  { cat: "Sod", loc: "Lutz", desc: "1,800 sq ft Empire Zoysia sod replacement.", ba: true },
-  { cat: "Cleanup", loc: "Temple Terrace", desc: "Post-storm debris removal and mulch refresh." },
-  { cat: "Hardscaping", loc: "St. Petersburg", desc: "Curved walkway with low-voltage path lighting." },
-  { cat: "Landscape Design", loc: "Clearwater", desc: "Backyard tropical garden with bird of paradise." },
-  { cat: "Lawn Care", loc: "Land O' Lakes", desc: "Premium plan including fertilization and pest control." },
-  { cat: "Sod", loc: "Plant City", desc: "Bahia sod install across a 3-acre rural property." },
-  { cat: "Irrigation", loc: "South Tampa", desc: "French drain install solving chronic backyard pooling.", ba: true },
-  { cat: "Landscape Design", loc: "Tampa", desc: "Modern minimalist front entry with crushed shell beds." },
+const projects: { cat: Exclude<Cat, "All">; loc: string; desc: string; img: string; ba?: boolean }[] = [
+  { cat: "Hardscaping", loc: "South Tampa", desc: "Travertine paver patio with seat wall and fire pit.", img: SERVICE_IMAGES.hardscaping, ba: true },
+  { cat: "Landscape Design", loc: "Wesley Chapel", desc: "Full front-yard redesign with Florida natives.", img: SERVICE_IMAGES["landscape-design"], ba: true },
+  { cat: "Lawn Care", loc: "Brandon", desc: "Weekly Floratam St. Augustine maintenance program.", img: SERVICE_IMAGES["lawn-care"] },
+  { cat: "Irrigation", loc: "Riverview", desc: "8-zone smart sprinkler with Rachio controller.", img: SERVICE_IMAGES.irrigation },
+  { cat: "Sod", loc: "Lutz", desc: "1,800 sq ft Empire Zoysia sod replacement.", img: SERVICE_IMAGES["sod-installation"], ba: true },
+  { cat: "Cleanup", loc: "Temple Terrace", desc: "Post-storm debris removal and mulch refresh.", img: SERVICE_IMAGES["seasonal-cleanup"] },
+  { cat: "Hardscaping", loc: "St. Petersburg", desc: "Curved walkway with low-voltage path lighting.", img: IMG.walkway },
+  { cat: "Landscape Design", loc: "Clearwater", desc: "Backyard tropical garden with bird of paradise.", img: SERVICE_IMAGES["landscape-design"] },
+  { cat: "Lawn Care", loc: "Land O' Lakes", desc: "Premium plan including fertilization and pest control.", img: SERVICE_IMAGES["lawn-care"] },
+  { cat: "Sod", loc: "Plant City", desc: "Bahia sod install across a 3-acre rural property.", img: SERVICE_IMAGES["sod-installation"] },
+  { cat: "Irrigation", loc: "South Tampa", desc: "French drain install solving chronic backyard pooling.", img: SERVICE_IMAGES.irrigation },
+  { cat: "Landscape Design", loc: "Tampa", desc: "Modern minimalist front entry with crushed shell beds.", img: IMG.modernEntry },
 ];
 
 const cats: Cat[] = ["All", "Lawn Care", "Landscape Design", "Hardscaping", "Irrigation", "Sod", "Cleanup"];
@@ -63,12 +63,14 @@ function PortfolioPage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p, i) => (
             <article key={i} className="overflow-hidden rounded-2xl border border-border bg-card">
-              {p.ba ? <BeforeAfter loc={p.loc} cat={p.cat} /> : (
-                <PhotoPlaceholder
-                  label={`${p.cat} — ${p.loc}`}
+              {p.ba ? <BeforeAfter loc={p.loc} cat={p.cat} after={p.img} /> : (
+                <img
+                  src={p.img}
                   alt={`${p.cat.toLowerCase()} project ${p.loc} FL – Canvas Landscapes`}
-                  className="aspect-[4/3]"
-                  variant={i % 2 === 0 ? "a" : "b"}
+                  loading="lazy"
+                  width={1280}
+                  height={960}
+                  className="aspect-[4/3] w-full object-cover"
                 />
               )}
               <div className="p-5">
@@ -94,13 +96,27 @@ function PortfolioPage() {
   );
 }
 
-function BeforeAfter({ loc, cat }: { loc: string; cat: string }) {
+function BeforeAfter({ loc, cat, after }: { loc: string; cat: string; after: string }) {
   const [pos, setPos] = useState(50);
   return (
-    <div className="relative aspect-[4/3] select-none">
-      <PhotoPlaceholder label={`BEFORE — ${loc}`} alt={`${cat} before ${loc} FL – Canvas Landscapes`} className="absolute inset-0 h-full w-full" variant="b" />
+    <div className="relative aspect-[4/3] select-none overflow-hidden">
+      <img
+        src={IMG.before}
+        alt={`${cat} before ${loc} FL – Canvas Landscapes`}
+        loading="lazy"
+        width={1280}
+        height={960}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-        <PhotoPlaceholder label={`AFTER — ${loc}`} alt={`${cat} after ${loc} FL – Canvas Landscapes`} className="h-full w-full" variant="a" />
+        <img
+          src={after}
+          alt={`${cat} after ${loc} FL – Canvas Landscapes`}
+          loading="lazy"
+          width={1280}
+          height={960}
+          className="h-full w-full object-cover"
+        />
       </div>
       <input
         type="range"
@@ -112,6 +128,8 @@ function BeforeAfter({ loc, cat }: { loc: string; cat: string }) {
         className="absolute inset-x-0 bottom-3 mx-auto block w-[85%] accent-accent"
       />
       <div className="pointer-events-none absolute top-0 bottom-0 w-0.5 bg-accent" style={{ left: `${pos}%` }} />
+      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">Before</span>
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-accent-foreground">After</span>
     </div>
   );
 }

@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Star, ShieldCheck, Trophy, Sprout, CheckCircle2, ArrowRight, Phone } from "lucide-react";
-import { PhotoPlaceholder } from "@/components/photo-placeholder";
 import { ServiceGrid } from "@/components/service-grid";
 import { CTASection } from "@/components/cta-section";
+import { IMG, SERVICE_IMAGES } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -19,12 +19,12 @@ export const Route = createFileRoute("/")({
 });
 
 const portfolio = [
-  { tag: "Backyard Patio — South Tampa", alt: "backyard patio installation South Tampa FL – Canvas Landscapes" },
-  { tag: "Lawn Renovation — Wesley Chapel", alt: "lawn renovation Wesley Chapel FL – Canvas Landscapes" },
-  { tag: "Garden Design — St. Petersburg", alt: "garden design St. Petersburg FL – Canvas Landscapes" },
-  { tag: "Irrigation Install — Brandon", alt: "irrigation install Brandon FL – Canvas Landscapes" },
-  { tag: "Retaining Wall — Lutz", alt: "retaining wall Lutz FL – Canvas Landscapes" },
-  { tag: "Spring Cleanup — Riverview", alt: "seasonal cleanup Riverview FL – Canvas Landscapes" },
+  { tag: "Backyard Patio — South Tampa", alt: "backyard patio installation South Tampa FL – Canvas Landscapes", img: SERVICE_IMAGES.hardscaping },
+  { tag: "Lawn Renovation — Wesley Chapel", alt: "lawn renovation Wesley Chapel FL – Canvas Landscapes", img: SERVICE_IMAGES["lawn-care"] },
+  { tag: "Garden Design — St. Petersburg", alt: "garden design St. Petersburg FL – Canvas Landscapes", img: SERVICE_IMAGES["landscape-design"] },
+  { tag: "Irrigation Install — Brandon", alt: "irrigation install Brandon FL – Canvas Landscapes", img: SERVICE_IMAGES.irrigation },
+  { tag: "Modern Entry — Lutz", alt: "modern entry landscaping Lutz FL – Canvas Landscapes", img: IMG.modernEntry },
+  { tag: "Path Lighting — Riverview", alt: "landscape path lighting Riverview FL – Canvas Landscapes", img: IMG.walkway },
 ];
 
 const reviews = [
@@ -38,10 +38,13 @@ function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <PhotoPlaceholder
-          label="ADD HERO PHOTO — Tampa backyard transformation"
+        <img
+          src={IMG.hero}
           alt="Tampa backyard landscaping transformation – Canvas Landscapes"
-          className="absolute inset-0 h-full w-full"
+          width={1920}
+          height={1280}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/55 to-ink/80" />
         <div className="container-prose relative z-10 grid min-h-[640px] place-items-center py-24 text-center text-primary-foreground md:min-h-[760px] md:py-32">
@@ -125,11 +128,13 @@ function HomePage() {
 
       {/* OWNER */}
       <section className="container-prose grid gap-10 py-20 md:grid-cols-2 md:py-28">
-        <PhotoPlaceholder
-          variant="b"
-          label="ADD OWNER PHOTO"
+        <img
+          src={IMG.owner}
           alt="Marco Rivera, founder of Canvas Landscapes Tampa FL"
-          className="aspect-[4/5] rounded-3xl"
+          loading="lazy"
+          width={1024}
+          height={1024}
+          className="aspect-[4/5] w-full rounded-3xl object-cover"
         />
         <div className="flex flex-col justify-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">The Founder</p>
@@ -157,7 +162,7 @@ function HomePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {portfolio.map((p) => (
               <div key={p.tag} className="overflow-hidden rounded-2xl">
-                <PhotoPlaceholder label={p.tag} alt={p.alt} className="aspect-[4/3]" variant={Math.random() > 0.5 ? "a" : "b"} />
+                <img src={p.img} alt={p.alt} loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105" />
                 <div className="bg-card px-4 py-3 text-sm font-medium">{p.tag}</div>
               </div>
             ))}

@@ -1,5 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
+import { SERVICE_IMAGES } from "@/lib/images";
 
 export const SERVICES = [
   { slug: "lawn-care", title: "Lawn Care & Maintenance", short: "Weekly mowing, edging & treatments tuned to Tampa grass.", keyword: "Tampa lawn care" },
@@ -21,16 +22,25 @@ export function ServiceGrid({ limit }: { limit?: number }) {
           key={s.slug}
           to="/services/$slug"
           params={{ slug: s.slug }}
-          className="group rounded-2xl border border-border bg-card p-6 transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
+          className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
         >
-          <div className="h-32 photo-placeholder rounded-xl" aria-label={`${s.title} in Tampa FL — Canvas Landscapes`}>
-            <span className="relative z-10 p-3 text-[10px] uppercase tracking-wider opacity-80">{s.title} · Tampa, FL</span>
+          <div className="aspect-[4/3] overflow-hidden">
+            <img
+              src={SERVICE_IMAGES[s.slug]}
+              alt={`${s.title} in Tampa, FL — Canvas Landscapes`}
+              loading="lazy"
+              width={1280}
+              height={960}
+              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+            />
           </div>
-          <h3 className="mt-5 font-display text-xl font-semibold">{s.title}</h3>
-          <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
-          <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-accent">
-            Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-          </span>
+          <div className="p-6">
+            <h3 className="font-display text-xl font-semibold">{s.title}</h3>
+            <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
+            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-accent">
+              Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </span>
+          </div>
         </Link>
       ))}
     </div>
