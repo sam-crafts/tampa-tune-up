@@ -19,12 +19,12 @@ export const Route = createFileRoute("/")({
 });
 
 const portfolio = [
-  { tag: "Backyard Patio — South Tampa", alt: "backyard patio installation South Tampa FL – Canvas Landscapes" },
-  { tag: "Lawn Renovation — Wesley Chapel", alt: "lawn renovation Wesley Chapel FL – Canvas Landscapes" },
-  { tag: "Garden Design — St. Petersburg", alt: "garden design St. Petersburg FL – Canvas Landscapes" },
-  { tag: "Irrigation Install — Brandon", alt: "irrigation install Brandon FL – Canvas Landscapes" },
-  { tag: "Retaining Wall — Lutz", alt: "retaining wall Lutz FL – Canvas Landscapes" },
-  { tag: "Spring Cleanup — Riverview", alt: "seasonal cleanup Riverview FL – Canvas Landscapes" },
+  { tag: "Backyard Patio — South Tampa", alt: "backyard patio installation South Tampa FL – Canvas Landscapes", img: SERVICE_IMAGES.hardscaping },
+  { tag: "Lawn Renovation — Wesley Chapel", alt: "lawn renovation Wesley Chapel FL – Canvas Landscapes", img: SERVICE_IMAGES["lawn-care"] },
+  { tag: "Garden Design — St. Petersburg", alt: "garden design St. Petersburg FL – Canvas Landscapes", img: SERVICE_IMAGES["landscape-design"] },
+  { tag: "Irrigation Install — Brandon", alt: "irrigation install Brandon FL – Canvas Landscapes", img: SERVICE_IMAGES.irrigation },
+  { tag: "Modern Entry — Lutz", alt: "modern entry landscaping Lutz FL – Canvas Landscapes", img: IMG.modernEntry },
+  { tag: "Path Lighting — Riverview", alt: "landscape path lighting Riverview FL – Canvas Landscapes", img: IMG.walkway },
 ];
 
 const reviews = [
