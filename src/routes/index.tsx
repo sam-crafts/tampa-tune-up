@@ -162,7 +162,7 @@ function HomePage() {
           <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {portfolio.map((p) => (
               <div key={p.tag} className="overflow-hidden rounded-2xl">
-                <PhotoPlaceholder label={p.tag} alt={p.alt} className="aspect-[4/3]" variant={Math.random() > 0.5 ? "a" : "b"} />
+                <img src={p.img} alt={p.alt} loading="lazy" width={1280} height={960} className="aspect-[4/3] w-full object-cover transition-transform duration-500 hover:scale-105" />
                 <div className="bg-card px-4 py-3 text-sm font-medium">{p.tag}</div>
               </div>
             ))}
