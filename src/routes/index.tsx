@@ -128,11 +128,13 @@ function HomePage() {
 
       {/* OWNER */}
       <section className="container-prose grid gap-10 py-20 md:grid-cols-2 md:py-28">
-        <PhotoPlaceholder
-          variant="b"
-          label="ADD OWNER PHOTO"
+        <img
+          src={IMG.owner}
           alt="Marco Rivera, founder of Canvas Landscapes Tampa FL"
-          className="aspect-[4/5] rounded-3xl"
+          loading="lazy"
+          width={1024}
+          height={1024}
+          className="aspect-[4/5] w-full rounded-3xl object-cover"
         />
         <div className="flex flex-col justify-center">
           <p className="text-sm font-semibold uppercase tracking-wider text-accent">The Founder</p>
