@@ -1,8 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Star, ShieldCheck, Trophy, Sprout, CheckCircle2, ArrowRight, Phone } from "lucide-react";
-import { PhotoPlaceholder } from "@/components/photo-placeholder";
 import { ServiceGrid } from "@/components/service-grid";
 import { CTASection } from "@/components/cta-section";
+import { IMG, SERVICE_IMAGES } from "@/lib/images";
 
 export const Route = createFileRoute("/")({
   head: () => ({
