@@ -47,13 +47,19 @@ function ServiceDetailPage() {
       </section>
 
       <section className="container-prose grid gap-4 sm:grid-cols-3">
-        {[0, 1, 2].map((i) => (
-          <PhotoPlaceholder
+        {[
+          SERVICE_IMAGES[d.slug] ?? IMG.modernEntry,
+          IMG.walkway,
+          IMG.after,
+        ].map((src, i) => (
+          <img
             key={i}
-            label={`${d.h1.split(" in ")[0]} — Tampa, FL`}
+            src={src}
             alt={`${d.keyword} – Canvas Landscapes Tampa FL #${i + 1}`}
-            className="aspect-[4/3] rounded-2xl"
-            variant={i % 2 === 0 ? "a" : "b"}
+            loading="lazy"
+            width={1280}
+            height={960}
+            className="aspect-[4/3] w-full rounded-2xl object-cover"
           />
         ))}
       </section>
