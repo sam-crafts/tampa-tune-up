@@ -63,12 +63,14 @@ function PortfolioPage() {
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p, i) => (
             <article key={i} className="overflow-hidden rounded-2xl border border-border bg-card">
-              {p.ba ? <BeforeAfter loc={p.loc} cat={p.cat} /> : (
-                <PhotoPlaceholder
-                  label={`${p.cat} — ${p.loc}`}
+              {p.ba ? <BeforeAfter loc={p.loc} cat={p.cat} after={p.img} /> : (
+                <img
+                  src={p.img}
                   alt={`${p.cat.toLowerCase()} project ${p.loc} FL – Canvas Landscapes`}
-                  className="aspect-[4/3]"
-                  variant={i % 2 === 0 ? "a" : "b"}
+                  loading="lazy"
+                  width={1280}
+                  height={960}
+                  className="aspect-[4/3] w-full object-cover"
                 />
               )}
               <div className="p-5">
