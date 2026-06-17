@@ -96,13 +96,27 @@ function PortfolioPage() {
   );
 }
 
-function BeforeAfter({ loc, cat }: { loc: string; cat: string }) {
+function BeforeAfter({ loc, cat, after }: { loc: string; cat: string; after: string }) {
   const [pos, setPos] = useState(50);
   return (
-    <div className="relative aspect-[4/3] select-none">
-      <PhotoPlaceholder label={`BEFORE — ${loc}`} alt={`${cat} before ${loc} FL – Canvas Landscapes`} className="absolute inset-0 h-full w-full" variant="b" />
+    <div className="relative aspect-[4/3] select-none overflow-hidden">
+      <img
+        src={IMG.before}
+        alt={`${cat} before ${loc} FL – Canvas Landscapes`}
+        loading="lazy"
+        width={1280}
+        height={960}
+        className="absolute inset-0 h-full w-full object-cover"
+      />
       <div className="absolute inset-0 overflow-hidden" style={{ clipPath: `inset(0 ${100 - pos}% 0 0)` }}>
-        <PhotoPlaceholder label={`AFTER — ${loc}`} alt={`${cat} after ${loc} FL – Canvas Landscapes`} className="h-full w-full" variant="a" />
+        <img
+          src={after}
+          alt={`${cat} after ${loc} FL – Canvas Landscapes`}
+          loading="lazy"
+          width={1280}
+          height={960}
+          className="h-full w-full object-cover"
+        />
       </div>
       <input
         type="range"
@@ -114,6 +128,8 @@ function BeforeAfter({ loc, cat }: { loc: string; cat: string }) {
         className="absolute inset-x-0 bottom-3 mx-auto block w-[85%] accent-accent"
       />
       <div className="pointer-events-none absolute top-0 bottom-0 w-0.5 bg-accent" style={{ left: `${pos}%` }} />
+      <span className="pointer-events-none absolute left-3 top-3 rounded-full bg-black/60 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-white">Before</span>
+      <span className="pointer-events-none absolute right-3 top-3 rounded-full bg-accent px-2.5 py-1 text-[10px] font-semibold uppercase tracking-wider text-accent-foreground">After</span>
     </div>
   );
 }
