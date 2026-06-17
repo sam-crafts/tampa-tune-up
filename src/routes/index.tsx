@@ -38,10 +38,13 @@ function HomePage() {
     <>
       {/* HERO */}
       <section className="relative overflow-hidden">
-        <PhotoPlaceholder
-          label="ADD HERO PHOTO — Tampa backyard transformation"
+        <img
+          src={IMG.hero}
           alt="Tampa backyard landscaping transformation – Canvas Landscapes"
-          className="absolute inset-0 h-full w-full"
+          width={1920}
+          height={1280}
+          fetchPriority="high"
+          className="absolute inset-0 h-full w-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-ink/60 via-ink/55 to-ink/80" />
         <div className="container-prose relative z-10 grid min-h-[640px] place-items-center py-24 text-center text-primary-foreground md:min-h-[760px] md:py-32">
