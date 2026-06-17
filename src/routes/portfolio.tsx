@@ -19,19 +19,19 @@ export const Route = createFileRoute("/portfolio")({
 
 type Cat = "All" | "Lawn Care" | "Landscape Design" | "Hardscaping" | "Irrigation" | "Sod" | "Cleanup";
 
-const projects: { cat: Exclude<Cat, "All">; loc: string; desc: string; ba?: boolean }[] = [
-  { cat: "Hardscaping", loc: "South Tampa", desc: "Travertine paver patio with seat wall and fire pit.", ba: true },
-  { cat: "Landscape Design", loc: "Wesley Chapel", desc: "Full front-yard redesign with Florida natives.", ba: true },
-  { cat: "Lawn Care", loc: "Brandon", desc: "Weekly Floratam St. Augustine maintenance program." },
-  { cat: "Irrigation", loc: "Riverview", desc: "8-zone smart sprinkler with Rachio controller." },
-  { cat: "Sod", loc: "Lutz", desc: "1,800 sq ft Empire Zoysia sod replacement.", ba: true },
-  { cat: "Cleanup", loc: "Temple Terrace", desc: "Post-storm debris removal and mulch refresh." },
-  { cat: "Hardscaping", loc: "St. Petersburg", desc: "Curved walkway with low-voltage path lighting." },
-  { cat: "Landscape Design", loc: "Clearwater", desc: "Backyard tropical garden with bird of paradise." },
-  { cat: "Lawn Care", loc: "Land O' Lakes", desc: "Premium plan including fertilization and pest control." },
-  { cat: "Sod", loc: "Plant City", desc: "Bahia sod install across a 3-acre rural property." },
-  { cat: "Irrigation", loc: "South Tampa", desc: "French drain install solving chronic backyard pooling.", ba: true },
-  { cat: "Landscape Design", loc: "Tampa", desc: "Modern minimalist front entry with crushed shell beds." },
+const projects: { cat: Exclude<Cat, "All">; loc: string; desc: string; img: string; ba?: boolean }[] = [
+  { cat: "Hardscaping", loc: "South Tampa", desc: "Travertine paver patio with seat wall and fire pit.", img: SERVICE_IMAGES.hardscaping, ba: true },
+  { cat: "Landscape Design", loc: "Wesley Chapel", desc: "Full front-yard redesign with Florida natives.", img: SERVICE_IMAGES["landscape-design"], ba: true },
+  { cat: "Lawn Care", loc: "Brandon", desc: "Weekly Floratam St. Augustine maintenance program.", img: SERVICE_IMAGES["lawn-care"] },
+  { cat: "Irrigation", loc: "Riverview", desc: "8-zone smart sprinkler with Rachio controller.", img: SERVICE_IMAGES.irrigation },
+  { cat: "Sod", loc: "Lutz", desc: "1,800 sq ft Empire Zoysia sod replacement.", img: SERVICE_IMAGES["sod-installation"], ba: true },
+  { cat: "Cleanup", loc: "Temple Terrace", desc: "Post-storm debris removal and mulch refresh.", img: SERVICE_IMAGES["seasonal-cleanup"] },
+  { cat: "Hardscaping", loc: "St. Petersburg", desc: "Curved walkway with low-voltage path lighting.", img: IMG.walkway },
+  { cat: "Landscape Design", loc: "Clearwater", desc: "Backyard tropical garden with bird of paradise.", img: SERVICE_IMAGES["landscape-design"] },
+  { cat: "Lawn Care", loc: "Land O' Lakes", desc: "Premium plan including fertilization and pest control.", img: SERVICE_IMAGES["lawn-care"] },
+  { cat: "Sod", loc: "Plant City", desc: "Bahia sod install across a 3-acre rural property.", img: SERVICE_IMAGES["sod-installation"] },
+  { cat: "Irrigation", loc: "South Tampa", desc: "French drain install solving chronic backyard pooling.", img: SERVICE_IMAGES.irrigation },
+  { cat: "Landscape Design", loc: "Tampa", desc: "Modern minimalist front entry with crushed shell beds.", img: IMG.modernEntry },
 ];
 
 const cats: Cat[] = ["All", "Lawn Care", "Landscape Design", "Hardscaping", "Irrigation", "Sod", "Cleanup"];
