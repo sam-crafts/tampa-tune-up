@@ -22,49 +22,58 @@ export const Route = createFileRoute("/contact")({
 function ContactPage() {
   return (
     <section className="container-prose py-16 md:py-24">
-      <p className="text-sm font-semibold uppercase tracking-wider text-accent">Contact</p>
-      <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold md:text-6xl">Get Your Free Estimate in Tampa, FL</h1>
-      <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-        Call, email, or send us a note below. We respond same day and serve all of Tampa Bay — Tampa landscaping, lawn care, hardscaping, and more.
-      </p>
+      <Reveal variant="fade-up">
+        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Contact</p>
+        <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold md:text-6xl">Get Your Free Estimate in Tampa, FL</h1>
+        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+          Call, email, or send us a note below. We respond same day and serve all of Tampa Bay — Tampa landscaping, lawn care, hardscaping, and more.
+        </p>
+      </Reveal>
 
       <div className="mt-12 grid gap-10 md:grid-cols-[1fr_1.1fr]">
         <div className="space-y-6">
-          <a href="tel:+18135550192" className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6 transition hover:border-primary">
-            <Phone className="h-6 w-6 shrink-0 text-primary" />
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Call</p>
-              <p className="mt-1 font-display text-2xl font-semibold">(813) 555-0192</p>
-            </div>
-          </a>
-          <a href="mailto:hello@canvaslandscapes.com" className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6 transition hover:border-primary">
-            <Mail className="h-6 w-6 shrink-0 text-primary" />
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Email</p>
-              <p className="mt-1 font-display text-xl font-semibold break-all">hello@canvaslandscapes.com</p>
-            </div>
-          </a>
-          <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6">
-            <Clock className="h-6 w-6 shrink-0 text-primary" />
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Hours</p>
-              <p className="mt-1 text-sm">Mon–Fri · 7:00am – 6:00pm</p>
-              <p className="text-sm">Saturday · 8:00am – 2:00pm</p>
-            </div>
-          </div>
-          <div className="rounded-2xl border border-border bg-card p-6">
-            <div className="flex items-start gap-4">
-              <MapPin className="h-6 w-6 shrink-0 text-primary" />
+          {[
+            { href: "tel:+18135550192", Icon: Phone, label: "Call", value: <p className="mt-1 font-display text-2xl font-semibold">(813) 555-0192</p> },
+            { href: "mailto:hello@canvaslandscapes.com", Icon: Mail, label: "Email", value: <p className="mt-1 font-display text-xl font-semibold break-all">hello@canvaslandscapes.com</p> },
+          ].map((c, i) => (
+            <Reveal key={c.label} variant="slide-left" delay={i * 100}>
+              <a href={c.href} className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6 transition hover:border-primary hover:-translate-y-0.5">
+                <c.Icon className="h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">{c.label}</p>
+                  {c.value}
+                </div>
+              </a>
+            </Reveal>
+          ))}
+          <Reveal variant="slide-left" delay={200}>
+            <div className="flex items-start gap-4 rounded-2xl border border-border bg-card p-6">
+              <Clock className="h-6 w-6 shrink-0 text-primary" />
               <div>
-                <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Service Areas</p>
-                <p className="mt-2 text-sm leading-relaxed">{SERVICE_AREAS.join(" · ")}</p>
+                <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Hours</p>
+                <p className="mt-1 text-sm">Mon–Fri · 7:00am – 6:00pm</p>
+                <p className="text-sm">Saturday · 8:00am – 2:00pm</p>
               </div>
             </div>
-          </div>
+          </Reveal>
+          <Reveal variant="slide-left" delay={300}>
+            <div className="rounded-2xl border border-border bg-card p-6">
+              <div className="flex items-start gap-4">
+                <MapPin className="h-6 w-6 shrink-0 text-primary" />
+                <div>
+                  <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Service Areas</p>
+                  <p className="mt-2 text-sm leading-relaxed">{SERVICE_AREAS.join(" · ")}</p>
+                </div>
+              </div>
+            </div>
+          </Reveal>
         </div>
 
-        <QuoteForm />
+        <Reveal variant="slide-right" delay={100} duration={800}>
+          <QuoteForm />
+        </Reveal>
       </div>
     </section>
   );
 }
+
