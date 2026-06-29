@@ -2,6 +2,8 @@ import { createFileRoute } from "@tanstack/react-router";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { QuoteForm } from "@/components/quote-form";
 import { SERVICE_AREAS } from "@/components/site-footer";
+import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
