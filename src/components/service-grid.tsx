@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { ArrowRight } from "lucide-react";
 import { SERVICE_IMAGES } from "@/lib/images";
+import { Reveal } from "@/components/reveal";
 
 export const SERVICES = [
   { slug: "lawn-care", title: "Lawn Care & Maintenance", short: "Weekly mowing, edging & treatments tuned to Tampa grass.", keyword: "Tampa lawn care" },
@@ -17,32 +18,34 @@ export function ServiceGrid({ limit }: { limit?: number }) {
   const list = limit ? SERVICES.slice(0, limit) : SERVICES;
   return (
     <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {list.map((s) => (
-        <Link
-          key={s.slug}
-          to="/services/$slug"
-          params={{ slug: s.slug }}
-          className="group overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
-        >
-          <div className="aspect-[4/3] overflow-hidden">
-            <img
-              src={SERVICE_IMAGES[s.slug]}
-              alt={`${s.title} in Tampa, FL — Canvas Landscapes`}
-              loading="lazy"
-              width={1280}
-              height={960}
-              className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
-            />
-          </div>
-          <div className="p-6">
-            <h3 className="font-display text-xl font-semibold">{s.title}</h3>
-            <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
-            <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-accent">
-              Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-            </span>
-          </div>
-        </Link>
+      {list.map((s, i) => (
+        <Reveal key={s.slug} variant="fade-up" delay={(i % 3) * 110}>
+          <Link
+            to="/services/$slug"
+            params={{ slug: s.slug }}
+            className="group block h-full overflow-hidden rounded-2xl border border-border bg-card transition hover:-translate-y-0.5 hover:border-primary hover:shadow-md"
+          >
+            <div className="aspect-[4/3] overflow-hidden">
+              <img
+                src={SERVICE_IMAGES[s.slug]}
+                alt={`${s.title} in Tampa, FL — Canvas Landscapes`}
+                loading="lazy"
+                width={1280}
+                height={960}
+                className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+              />
+            </div>
+            <div className="p-6">
+              <h3 className="font-display text-xl font-semibold">{s.title}</h3>
+              <p className="mt-2 text-sm text-muted-foreground">{s.short}</p>
+              <span className="mt-4 inline-flex items-center gap-1 text-sm font-semibold text-primary group-hover:text-accent">
+                Learn more <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+              </span>
+            </div>
+          </Link>
+        </Reveal>
       ))}
     </div>
   );
 }
+
