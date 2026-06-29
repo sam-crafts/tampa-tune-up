@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { FAQ } from "@/components/faq";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
