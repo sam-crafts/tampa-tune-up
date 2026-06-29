@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
 import { IMG, SERVICE_IMAGES } from "@/lib/images";
+
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
@@ -42,59 +44,68 @@ function PortfolioPage() {
   return (
     <>
       <section className="container-prose py-16 md:py-24">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Portfolio</p>
-        <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold md:text-6xl">Our Landscaping Work Across Tampa Bay</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">A look at recent Tampa landscaping, hardscaping, and design projects — from South Tampa backyards to Plant City sod installs.</p>
+        <Reveal variant="fade-up">
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Portfolio</p>
+          <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold md:text-6xl">Our Landscaping Work Across Tampa Bay</h1>
+          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">A look at recent Tampa landscaping, hardscaping, and design projects — from South Tampa backyards to Plant City sod installs.</p>
+        </Reveal>
 
-        <div className="mt-10 -mx-5 overflow-x-auto px-5">
-          <div className="flex gap-2 whitespace-nowrap">
-            {cats.map((c) => (
-              <button
-                key={c}
-                onClick={() => setActive(c)}
-                className={`rounded-full border px-4 py-2 text-sm font-medium transition ${active === c ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card hover:border-primary"}`}
-              >
-                {c}
-              </button>
-            ))}
+        <Reveal variant="fade-up" delay={150}>
+          <div className="mt-10 -mx-5 overflow-x-auto px-5">
+            <div className="flex gap-2 whitespace-nowrap">
+              {cats.map((c) => (
+                <button
+                  key={c}
+                  onClick={() => setActive(c)}
+                  className={`rounded-full border px-4 py-2 text-sm font-medium transition ${active === c ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card hover:border-primary"}`}
+                >
+                  {c}
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
+        </Reveal>
 
         <div className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {filtered.map((p, i) => (
-            <article key={i} className="overflow-hidden rounded-2xl border border-border bg-card">
-              {p.ba ? <BeforeAfter loc={p.loc} cat={p.cat} after={p.img} /> : (
-                <img
-                  src={p.img}
-                  alt={`${p.cat.toLowerCase()} project ${p.loc} FL – Canvas Landscapes`}
-                  loading="lazy"
-                  width={1280}
-                  height={960}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              )}
-              <div className="p-5">
-                <div className="flex items-center justify-between gap-3 text-xs">
-                  <span className="rounded-full bg-primary/10 px-2.5 py-1 font-semibold uppercase tracking-wider text-primary">{p.cat}</span>
-                  <span className="text-muted-foreground">{p.loc}</span>
+            <Reveal key={`${active}-${i}`} variant="fade-up" delay={(i % 3) * 110} duration={700}>
+              <article className="overflow-hidden rounded-2xl border border-border bg-card">
+                {p.ba ? <BeforeAfter loc={p.loc} cat={p.cat} after={p.img} /> : (
+                  <img
+                    src={p.img}
+                    alt={`${p.cat.toLowerCase()} project ${p.loc} FL – Canvas Landscapes`}
+                    loading="lazy"
+                    width={1280}
+                    height={960}
+                    className="aspect-[4/3] w-full object-cover"
+                  />
+                )}
+                <div className="p-5">
+                  <div className="flex items-center justify-between gap-3 text-xs">
+                    <span className="rounded-full bg-primary/10 px-2.5 py-1 font-semibold uppercase tracking-wider text-primary">{p.cat}</span>
+                    <span className="text-muted-foreground">{p.loc}</span>
+                  </div>
+                  <p className="mt-3 text-sm leading-relaxed">{p.desc}</p>
                 </div>
-                <p className="mt-3 text-sm leading-relaxed">{p.desc}</p>
-              </div>
-            </article>
+              </article>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-12 text-center">
-          <Link to="/contact" className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90">
-            Like What You See? Get a Free Estimate
-          </Link>
-        </div>
+        <Reveal variant="fade-up" delay={150}>
+          <div className="mt-12 text-center">
+            <Link to="/contact" className="inline-flex rounded-full bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground hover:opacity-90">
+              Like What You See? Get a Free Estimate
+            </Link>
+          </div>
+        </Reveal>
       </section>
 
       <CTASection />
     </>
   );
 }
+
 
 function BeforeAfter({ loc, cat, after }: { loc: string; cat: string; after: string }) {
   const [pos, setPos] = useState(50);

@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({
@@ -35,47 +37,56 @@ function ReviewsPage() {
   return (
     <>
       <section className="container-prose py-16 md:py-24">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Reviews</p>
-        <h1 className="mt-3 font-display text-4xl font-semibold md:text-6xl">Canvas Landscapes Reviews — Tampa, FL</h1>
+        <Reveal variant="fade-up">
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Reviews</p>
+          <h1 className="mt-3 font-display text-4xl font-semibold md:text-6xl">Canvas Landscapes Reviews — Tampa, FL</h1>
 
-        <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-border bg-card px-5 py-3">
-          <div className="flex text-accent">
-            {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
+          <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-border bg-card px-5 py-3">
+            <div className="flex text-accent">
+              {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-5 w-5 fill-current" />)}
+            </div>
+            <span className="text-sm font-semibold">4.9 out of 5</span>
+            <span className="text-sm text-muted-foreground">· 220 Google Reviews</span>
           </div>
-          <span className="text-sm font-semibold">4.9 out of 5</span>
-          <span className="text-sm text-muted-foreground">· 220 Google Reviews</span>
-        </div>
+        </Reveal>
 
         <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {REVIEWS.map((r) => (
-            <article key={r.name + r.date} className="flex flex-col rounded-2xl border border-border bg-card p-6">
-              <div className="flex items-center justify-between">
-                <div className="flex text-accent">
-                  {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+          {REVIEWS.map((r, i) => (
+            <Reveal key={r.name + r.date} variant="fade-up" delay={(i % 3) * 110}>
+              <article className="flex h-full flex-col rounded-2xl border border-border bg-card p-6">
+                <div className="flex items-center justify-between">
+                  <div className="flex text-accent">
+                    {Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}
+                  </div>
+                  <span className="text-xs text-muted-foreground">{r.date}</span>
                 </div>
-                <span className="text-xs text-muted-foreground">{r.date}</span>
-              </div>
-              <p className="mt-4 flex-1 text-sm leading-relaxed">"{r.text}"</p>
-              <div className="mt-5 border-t border-border pt-4 text-sm">
-                <p className="font-semibold">{r.name}</p>
-                <p className="text-muted-foreground">{r.area} · {r.svc}</p>
-              </div>
-            </article>
+                <p className="mt-4 flex-1 text-sm leading-relaxed">"{r.text}"</p>
+                <div className="mt-5 border-t border-border pt-4 text-sm">
+                  <p className="font-semibold">{r.name}</p>
+                  <p className="text-muted-foreground">{r.area} · {r.svc}</p>
+                </div>
+              </article>
+            </Reveal>
           ))}
         </div>
 
-        <div className="mt-14 grid place-items-center rounded-3xl border-2 border-dashed border-border bg-card/50 px-6 py-16 text-center">
-          <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Google Business Reviews Widget — embed here</p>
-        </div>
+        <Reveal variant="fade-up">
+          <div className="mt-14 grid place-items-center rounded-3xl border-2 border-dashed border-border bg-card/50 px-6 py-16 text-center">
+            <p className="text-sm font-semibold uppercase tracking-wider text-muted-foreground">Google Business Reviews Widget — embed here</p>
+          </div>
+        </Reveal>
 
-        <div className="mt-16 text-center">
-          <h2 className="font-display text-3xl font-semibold md:text-4xl">Join 220+ Happy Tampa Homeowners</h2>
-          <Link to="/contact" className="mt-6 inline-flex rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground hover:opacity-90">
-            Get My Free Estimate
-          </Link>
-        </div>
+        <Reveal variant="fade-up">
+          <div className="mt-16 text-center">
+            <h2 className="font-display text-3xl font-semibold md:text-4xl">Join 220+ Happy Tampa Homeowners</h2>
+            <Link to="/contact" className="mt-6 inline-flex rounded-full bg-primary px-7 py-3.5 text-sm font-semibold text-primary-foreground hover:opacity-90">
+              Get My Free Estimate
+            </Link>
+          </div>
+        </Reveal>
       </section>
-      <CTASection />
+      <Reveal variant="scale" duration={800}><CTASection /></Reveal>
     </>
   );
 }
+

@@ -131,3 +131,24 @@
   margin-inline: auto;
   padding-inline: 1.25rem;
 }
+
+/* Scroll reveal animations driven by <Reveal /> + IntersectionObserver */
+.reveal { opacity: 0; }
+.reveal[data-variant="fade-up"]     { transform: translate3d(0, 28px, 0); }
+.reveal[data-variant="fade"]        { transform: none; }
+.reveal[data-variant="scale"]       { transform: scale(0.94); }
+.reveal[data-variant="zoom-in"]     { transform: scale(1.06); }
+.reveal[data-variant="slide-left"]  { transform: translate3d(-40px, 0, 0); }
+.reveal[data-variant="slide-right"] { transform: translate3d(40px, 0, 0); }
+.reveal[data-variant="blur-up"]     { transform: translate3d(0, 18px, 0); filter: blur(10px); }
+
+.reveal[data-visible="true"] {
+  opacity: 1;
+  transform: none;
+  filter: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal { opacity: 1 !important; transform: none !important; filter: none !important; transition: none !important; }
+}
+

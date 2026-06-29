@@ -2,6 +2,8 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { CheckCircle2 } from "lucide-react";
 import { FAQ } from "@/components/faq";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/pricing")({
   head: () => ({
@@ -36,56 +38,64 @@ function PricingPage() {
   return (
     <>
       <section className="container-prose py-16 md:py-24">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Pricing</p>
-        <h1 className="mt-3 font-display text-4xl font-semibold md:text-6xl">Landscaping Pricing in Tampa, FL</h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Transparent pricing for Tampa Bay homeowners. No hidden fees, no surprises. Tampa lawn care plans below — custom project pricing provided after a free on-site estimate.
-        </p>
+        <Reveal variant="fade-up">
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Pricing</p>
+          <h1 className="mt-3 font-display text-4xl font-semibold md:text-6xl">Landscaping Pricing in Tampa, FL</h1>
+          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+            Transparent pricing for Tampa Bay homeowners. No hidden fees, no surprises. Tampa lawn care plans below — custom project pricing provided after a free on-site estimate.
+          </p>
+        </Reveal>
 
         <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {tiers.map((t) => (
-            <div
-              key={t.name}
-              className={`relative flex flex-col rounded-2xl border p-8 ${t.featured ? "border-primary bg-primary text-primary-foreground" : "border-border bg-card"}`}
-            >
-              {t.featured && (
-                <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-foreground">
-                  Most popular
-                </span>
-              )}
-              <h2 className="font-display text-2xl font-semibold">{t.name}</h2>
-              <p className="mt-4">
-                <span className="font-display text-5xl font-semibold">{t.price}</span>
-                <span className={`text-base ${t.featured ? "opacity-80" : "text-muted-foreground"}`}>{t.period}</span>
-              </p>
-              <ul className="mt-6 flex-1 space-y-2.5 text-sm">
-                {t.bullets.map((b) => (
-                  <li key={b} className="flex items-start gap-2">
-                    <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${t.featured ? "text-accent" : "text-primary"}`} />
-                    <span>{b}</span>
-                  </li>
-                ))}
-              </ul>
-              <Link
-                to="/contact"
-                className={`mt-8 inline-flex justify-center rounded-full px-6 py-3 text-sm font-semibold ${t.featured ? "bg-accent text-accent-foreground hover:opacity-90" : "bg-primary text-primary-foreground hover:opacity-90"}`}
+          {tiers.map((t, i) => (
+            <Reveal key={t.name} variant="fade-up" delay={i * 140} duration={750}>
+              <div
+                className={`relative flex h-full flex-col rounded-2xl border p-8 transition hover:-translate-y-1 ${t.featured ? "border-primary bg-primary text-primary-foreground shadow-lg md:scale-[1.03]" : "border-border bg-card"}`}
               >
-                Get this plan
-              </Link>
-            </div>
+                {t.featured && (
+                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-accent px-3 py-1 text-[11px] font-bold uppercase tracking-wider text-accent-foreground">
+                    Most popular
+                  </span>
+                )}
+                <h2 className="font-display text-2xl font-semibold">{t.name}</h2>
+                <p className="mt-4">
+                  <span className="font-display text-5xl font-semibold">{t.price}</span>
+                  <span className={`text-base ${t.featured ? "opacity-80" : "text-muted-foreground"}`}>{t.period}</span>
+                </p>
+                <ul className="mt-6 flex-1 space-y-2.5 text-sm">
+                  {t.bullets.map((b) => (
+                    <li key={b} className="flex items-start gap-2">
+                      <CheckCircle2 className={`mt-0.5 h-4 w-4 shrink-0 ${t.featured ? "text-accent" : "text-primary"}`} />
+                      <span>{b}</span>
+                    </li>
+                  ))}
+                </ul>
+                <Link
+                  to="/contact"
+                  className={`mt-8 inline-flex justify-center rounded-full px-6 py-3 text-sm font-semibold ${t.featured ? "bg-accent text-accent-foreground hover:opacity-90" : "bg-primary text-primary-foreground hover:opacity-90"}`}
+                >
+                  Get this plan
+                </Link>
+              </div>
+            </Reveal>
           ))}
         </div>
 
-        <p className="mt-6 rounded-xl bg-secondary/60 p-4 text-sm text-muted-foreground">
-          <strong className="text-foreground">Note:</strong> Custom project pricing (hardscaping, design, irrigation) provided after free on-site estimate. Most Tampa Bay projects range from $1,500–$25,000 depending on scope.
-        </p>
+        <Reveal variant="fade-up">
+          <p className="mt-6 rounded-xl bg-secondary/60 p-4 text-sm text-muted-foreground">
+            <strong className="text-foreground">Note:</strong> Custom project pricing (hardscaping, design, irrigation) provided after free on-site estimate. Most Tampa Bay projects range from $1,500–$25,000 depending on scope.
+          </p>
+        </Reveal>
 
-        <h2 className="mt-16 font-display text-3xl font-semibold md:text-4xl">Pricing FAQ</h2>
-        <div className="mt-6">
-          <FAQ items={faq} />
-        </div>
+        <Reveal variant="fade-up">
+          <h2 className="mt-16 font-display text-3xl font-semibold md:text-4xl">Pricing FAQ</h2>
+          <div className="mt-6">
+            <FAQ items={faq} />
+          </div>
+        </Reveal>
       </section>
-      <CTASection />
+      <Reveal variant="scale" duration={800}><CTASection /></Reveal>
     </>
   );
 }
+
