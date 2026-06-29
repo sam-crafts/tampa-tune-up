@@ -1,7 +1,9 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
 import { IMG, SERVICE_IMAGES } from "@/lib/images";
+
 
 export const Route = createFileRoute("/portfolio")({
   head: () => ({
