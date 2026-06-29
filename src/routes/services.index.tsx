@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { ServiceGrid } from "@/components/service-grid";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
 
 export const Route = createFileRoute("/services/")({
   head: () => ({
@@ -20,18 +21,21 @@ function ServicesHub() {
   return (
     <>
       <section className="container-prose py-20 md:py-28">
-        <p className="text-sm font-semibold uppercase tracking-wider text-accent">Services</p>
-        <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold md:text-6xl">
-          Landscaping Services in Tampa, FL
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Canvas Landscapes offers full-service landscaping across Tampa Bay. From weekly lawn care to complete outdoor transformations — we do it all. Trusted Tampa landscaping, Tampa lawn care, and Tampa hardscaping for over 15 years.
-        </p>
+        <Reveal variant="fade-up">
+          <p className="text-sm font-semibold uppercase tracking-wider text-accent">Services</p>
+          <h1 className="mt-3 max-w-3xl font-display text-4xl font-semibold md:text-6xl">
+            Landscaping Services in Tampa, FL
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+            Canvas Landscapes offers full-service landscaping across Tampa Bay. From weekly lawn care to complete outdoor transformations — we do it all. Trusted Tampa landscaping, Tampa lawn care, and Tampa hardscaping for over 15 years.
+          </p>
+        </Reveal>
         <div className="mt-12">
           <ServiceGrid />
         </div>
       </section>
-      <CTASection />
+      <Reveal variant="scale" duration={800}><CTASection /></Reveal>
     </>
   );
 }
+
