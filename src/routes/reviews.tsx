@@ -1,6 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { Star } from "lucide-react";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/reviews")({
   head: () => ({
