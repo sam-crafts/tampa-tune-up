@@ -5,6 +5,8 @@ import { IMG, SERVICE_IMAGES } from "@/lib/images";
 import { QuoteForm } from "@/components/quote-form";
 import { FAQ } from "@/components/faq";
 import { CTASection } from "@/components/cta-section";
+import { Reveal } from "@/components/reveal";
+
 
 export const Route = createFileRoute("/services/$slug")({
   loader: ({ params }) => {
