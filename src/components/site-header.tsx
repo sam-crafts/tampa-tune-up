@@ -48,7 +48,14 @@ export function SiteHeader() {
         <div className="border-t border-border bg-background md:hidden">
           <nav className="container-prose flex flex-col py-3">
             {nav.map((n) => (
-              <Link key={n.to} to={n.to} onClick={() => setOpen(false)} className="py-3 text-base font-medium text-foreground/90">
+              <Link
+                key={n.to}
+                to={n.to}
+                onClick={() => setOpen(false)}
+                className="py-3 text-base font-medium text-foreground/80 transition-colors hover:text-primary"
+                activeProps={{ className: "text-primary font-semibold" }}
+                activeOptions={n.to === "/" ? { exact: true } : undefined}
+              >
                 {n.label}
               </Link>
             ))}
