@@ -14,7 +14,10 @@ export const Route = createFileRoute("/")({
       { property: "og:description", content: "Tampa's most trusted landscaping company since 2009. Free estimates. Call (813) 555-0192." },
       { property: "og:url", content: "/" },
     ],
-    links: [{ rel: "canonical", href: "/" }],
+    links: [
+      { rel: "canonical", href: "/" },
+      { rel: "preload", as: "image", href: IMG.hero, fetchpriority: "high" } as never,
+    ],
   }),
   component: HomePage,
 });
