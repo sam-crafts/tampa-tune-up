@@ -1,4 +1,4 @@
-import hero from "@/assets/hero-tampa-backyard.jpg";
+import hero from "@/assets/hero-tampa-backyard.jpg?w=1600&format=webp&quality=72";
 import owner from "@/assets/owner-marco.jpg";
 import lawnCare from "@/assets/svc-lawn-care.jpg";
 import landscapeDesign from "@/assets/svc-landscape-design.jpg";
